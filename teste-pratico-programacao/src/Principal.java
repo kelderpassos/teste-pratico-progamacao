@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +24,7 @@ public class Principal {
 
         removeEmployee(employees, "João");
         printEmployees(employees);
+        raiseSalary(employees, "0.10");
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -40,5 +42,18 @@ public class Principal {
             System.out.println("Salário:" + decimalFormat.format(employee.getSalario()));
             System.out.println("Função:" + employee.getFuncao());
         }
-    }    
+    }
+
+    public static List<Funcionario> raiseSalary(List<Funcionario> employees, String value) {
+        BigDecimal raise = new BigDecimal(value);
+
+        for(Funcionario employee: employees) {
+            BigDecimal newSalary = employee.getSalario().multiply(BigDecimal.ONE.add(raise)).setScale(2, RoundingMode.HALF_UP);
+            employee.setSalario(newSalary);
+        }
+
+        return employees;
+    }
+
+    
 }
