@@ -32,7 +32,7 @@ public class Principal {
 
     public static void printEmployees(List<Funcionario> list) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-        DecimalFormat decimalFormat = new DecimalFormat("#, ##0.000");
+        DecimalFormat decimalFormat = new DecimalFormat("#, ##0.00");
 
         for(Funcionario employee: list) {
             System.out.println("Nome:" + employee.getNome());
