@@ -119,14 +119,14 @@ public class Principal {
     }
 
     public static void printSortedEmployees(List<Funcionario> employees) {
-        
+        //referência: https://stackoverflow.com/questions/40517977/sorting-a-list-with-stream-sorted-in-java
+
         List<Funcionario> sortedEmployees = employees.stream()
             .sorted((e1, e2) -> e1.getNome().compareTo(e2.getNome())).collect(Collectors.toList());
 
         for(Funcionario employee: sortedEmployees) {
             System.out.println(employee.getNome());
         }
- 
     }
 
     public static void printSumAllSalaries(List<Funcionario> employees) {
@@ -146,6 +146,5 @@ public class Principal {
             System.out.println("Nome do funcionário " + employee.getNome());
             System.out.println("Quantidade de salários mínimos " + employee.getSalario().divide(minSalary, RoundingMode.HALF_UP));
         }
-
     }
 }
