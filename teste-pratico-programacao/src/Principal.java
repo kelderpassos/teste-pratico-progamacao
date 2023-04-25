@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -39,6 +40,7 @@ public class Principal {
         // printEmployeeByRole(mapEmployeesByRole(employees));
         // printEmployeeByMonth(mapEmployeesByRole(employees));
         printOldestEmployee(employees);
+        printSortedEmployees(employees);
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -112,5 +114,15 @@ public class Principal {
         }
     }
 
+    public static void printSortedEmployees(List<Funcionario> employees) {
+        
+        List<Funcionario> sortedEmployees = employees.stream()
+            .sorted((e1, e2) -> e1.getNome().compareTo(e2.getNome())).collect(Collectors.toList());
+
+        for(Funcionario employee: sortedEmployees) {
+            System.out.println(employee.getNome());
+        }
+ 
+    }
 
 }
