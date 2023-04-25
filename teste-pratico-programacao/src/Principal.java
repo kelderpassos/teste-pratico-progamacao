@@ -34,14 +34,15 @@ public class Principal {
         employees.add(new Funcionario("Helena", LocalDate.of(1996, 9, 2), new BigDecimal("2799.93"), "Gerente"));
 
         removeEmployee(employees, "João");
-        // printEmployees(employees);
+        printEmployees(employees);
         raiseSalary(employees, "0.10");
         mapEmployeesByRole(employees);
-        // printEmployeeByRole(mapEmployeesByRole(employees));
-        // printEmployeeByMonth(mapEmployeesByRole(employees));
+        printEmployeeByRole(mapEmployeesByRole(employees));
+        printEmployeeByMonth(mapEmployeesByRole(employees));
         printOldestEmployee(employees);
         printSortedEmployees(employees);
         sumAllSalaries(employees);
+        amountOfMinSalary(employees);
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -104,7 +105,10 @@ public class Principal {
     }
 
     public static void printOldestEmployee(List<Funcionario> employees) {
+        //referência https://stackoverflow.com/questions/39791318/how-to-get-the-earliest-date-of-a-list-in-java
+
         int currentYear = LocalDate.now().getYear();
+
         Optional<Funcionario> oldestEmployee = employees.stream()
             .min(Comparator.comparing(Funcionario::getDataNascimento));
 
@@ -134,5 +138,15 @@ public class Principal {
         }
 
         System.out.println(counter);
+    }
+
+    public static void amountOfMinSalary(List<Funcionario> employees) {
+        BigDecimal minSalary = new BigDecimal("1212.00");
+
+        for(Funcionario employee: employees) {
+            System.out.println("Nome do funcionário " + employee.getNome());
+            System.out.println("Quantidade de salários mínimos " + employee.getSalario().divide(minSalary, RoundingMode.HALF_UP));
+        }
+
     }
 }
