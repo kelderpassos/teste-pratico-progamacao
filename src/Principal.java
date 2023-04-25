@@ -33,8 +33,8 @@ public class Principal {
         printEmployeeByMonth(mapEmployeesByRole(employees));
         printOldestEmployee(employees);
         printSortedEmployees(employees);
-        sumAllSalaries(employees);
-        amountOfMinSalary(employees);
+        printSumAllSalaries(employees);
+        printAmountOfMinSalary(employees);
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -126,7 +126,7 @@ public class Principal {
  
     }
 
-    public static void sumAllSalaries(List<Funcionario> employees) {
+    public static void printSumAllSalaries(List<Funcionario> employees) {
         BigDecimal counter = BigDecimal.ZERO;
 
         for(Funcionario employee: employees) {
@@ -136,7 +136,7 @@ public class Principal {
         System.out.println(counter);
     }
 
-    public static void amountOfMinSalary(List<Funcionario> employees) {
+    public static void printAmountOfMinSalary(List<Funcionario> employees) {
         BigDecimal minSalary = new BigDecimal("1212.00");
 
         for(Funcionario employee: employees) {
