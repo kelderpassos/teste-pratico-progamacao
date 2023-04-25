@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class Principal {
@@ -25,12 +26,14 @@ public class Principal {
         employees.add(new Funcionario("Heloísa", LocalDate.of(2003, 5, 24), new BigDecimal("1606.85"), "Eletricista"));
         employees.add(new Funcionario("Helena", LocalDate.of(1996, 9, 2), new BigDecimal("2799.93"), "Gerente"));
 
+        List<Integer> months = Arrays.asList(10, 12);
+
         removeEmployee(employees, "João");
         printEmployees(employees);
         raiseSalary(employees, "0.10");
         mapEmployeesByRole(employees);
         printEmployeeByRole(mapEmployeesByRole(employees));
-        printEmployeeByMonth(mapEmployeesByRole(employees));
+        printEmployeeByBirthMonth(mapEmployeesByRole(employees), months);
         printOldestEmployee(employees);
         printSortedEmployees(employees);
         printSumAllSalaries(employees);
@@ -83,12 +86,12 @@ public class Principal {
         }
     }
 
-    public static void printEmployeeByMonth(Map<String, List<Funcionario>> map) {
+    public static void printEmployeeByBirthMonth(Map<String, List<Funcionario>> map, List<Integer> months) {
         for(Map.Entry<String,List<Funcionario>> entry: map.entrySet()) {
             List<Funcionario> employees = entry.getValue();
             
             for(Funcionario employee: employees) {
-                if(employee.getDataNascimento().getMonthValue() == 10 || employee.getDataNascimento().getMonthValue() == 12) {
+                if(months.contains(employee.getDataNascimento().getMonthValue())) {
                     System.out.println("Função: " + entry.getKey());
                     System.out.println("Nome: " + employee.getNome());
                 }
