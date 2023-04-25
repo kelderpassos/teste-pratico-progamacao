@@ -6,17 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
 
 public class Principal {
     public static void main(String[] args) {
@@ -113,7 +105,11 @@ public class Principal {
             .min(Comparator.comparing(Funcionario::getDataNascimento));
 
         if(oldestEmployee.isPresent()) {
-            System.out.println("O funcionário mais velho é " + oldestEmployee.get().getNome() + " com " + (currentYear -  oldestEmployee.get().getDataNascimento().getYear()) + " anos");
+            System.out.println("O funcionário mais velho é " + oldestEmployee.get().getNome() 
+                + " com " 
+                + (currentYear -  oldestEmployee.get().getDataNascimento().getYear())
+                + " anos"
+            );
         } else {
             System.out.println("Não há um funcionário mais velho");
         }
