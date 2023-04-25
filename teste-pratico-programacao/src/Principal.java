@@ -4,8 +4,12 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Principal {
     public static void main(String[] args) {
@@ -25,6 +29,8 @@ public class Principal {
         removeEmployee(employees, "João");
         printEmployees(employees);
         raiseSalary(employees, "0.10");
+
+        mapEmployeesByRole(employees);
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -55,5 +61,10 @@ public class Principal {
         return employees;
     }
 
+    public static Map<String, List<Funcionario>> mapEmployeesByRole(List<Funcionario> employees) {
+    // referência: https://stackoverflow.com/questions/40772997/how-to-convert-listv-into-mapk-listv-with-java-8-streams-and-custom-list
+        return employees.stream()
+            .collect(Collectors.groupingBy(Funcionario::getFuncao));
+    }
     
 }
