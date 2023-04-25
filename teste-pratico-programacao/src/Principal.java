@@ -41,6 +41,7 @@ public class Principal {
         // printEmployeeByMonth(mapEmployeesByRole(employees));
         printOldestEmployee(employees);
         printSortedEmployees(employees);
+        sumAllSalaries(employees);
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -125,4 +126,13 @@ public class Principal {
  
     }
 
+    public static void sumAllSalaries(List<Funcionario> employees) {
+        BigDecimal counter = BigDecimal.ZERO;
+
+        for(Funcionario employee: employees) {
+            counter = counter.add(employee.getSalario());
+        }
+
+        System.out.println(counter);
+    }
 }
