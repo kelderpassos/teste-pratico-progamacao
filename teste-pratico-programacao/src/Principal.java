@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Principal {
@@ -30,7 +31,8 @@ public class Principal {
         // printEmployees(employees);
         raiseSalary(employees, "0.10");
         mapEmployeesByRole(employees);
-        printEmployeeByRole(mapEmployeesByRole(employees));
+        // printEmployeeByRole(mapEmployeesByRole(employees));
+        printEmployeeByMonth(mapEmployeesByRole(employees));
     }
 
     public static List<Funcionario> removeEmployee(List<Funcionario> list, String name) {
@@ -62,7 +64,7 @@ public class Principal {
     }
 
     public static Map<String, List<Funcionario>> mapEmployeesByRole(List<Funcionario> employees) {
-    //referência: https://stackoverflow.com/questions/40772997/how-to-convert-listv-into-mapk-listv-with-java-8-streams-and-custom-list
+        //referência: https://stackoverflow.com/questions/40772997/how-to-convert-listv-into-mapk-listv-with-java-8-streams-and-custom-list
         
         return employees.stream()
             .collect(Collectors.groupingBy(Funcionario::getFuncao));
@@ -79,4 +81,16 @@ public class Principal {
         }
     }
 
+    public static void printEmployeeByMonth(Map<String, List<Funcionario>> map) {
+        for(Map.Entry<String,List<Funcionario>> entry: map.entrySet()) {
+            List<Funcionario> employees = entry.getValue();
+            
+            for(Funcionario employee: employees) {
+                if(employee.getDataNascimento().getMonthValue() == 10 || employee.getDataNascimento().getMonthValue() == 12) {
+                    System.out.println("Função: " + entry.getKey());
+                    System.out.println("Nome: " + employee.getNome());
+                }
+            }
+        }
+    }
 }
